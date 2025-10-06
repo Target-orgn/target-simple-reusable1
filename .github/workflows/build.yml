@@ -1,9 +1,9 @@
 name: gitlab-source-group/build
-on:
-  push:
-  workflow_dispatch:
+true:
+  push: null
+  workflow_dispatch: null
 concurrency:
-  group: "${{ github.ref }}"
+  group: ${{ github.ref }}
   cancel-in-progress: true
 jobs:
   build:
@@ -17,3 +17,9 @@ jobs:
         fetch-depth: 20
         lfs: true
     - run: echo "Building the application..."
+'on':
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
