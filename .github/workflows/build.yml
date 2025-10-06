@@ -1,16 +1,16 @@
 name: Shared Workflow
-concurrency:
-  group: ${{ github.ref }}
-  cancel-in-progress: true
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Print environment
-      run: echo "Deploying to ${{ inputs.environment }} environment"
 'on':
   workflow_call:
     inputs:
       environment:
         required: true
         type: string
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Print environment
+      run: echo "Deploying to ${{ inputs.environment }} environment"
