@@ -1,19 +1,16 @@
-name: gitlab-source-group/demo_file
-on:
-  push:
-  workflow_dispatch:
+name: Shared Workflow
+'on':
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
 concurrency:
-  group: "${{ github.ref }}"
+  group: ${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  demo:
+  deploy:
     runs-on: ubuntu-latest
-    container:
-      image: alpine:latest
-    timeout-minutes: 60
     steps:
-    - uses: actions/checkout@v4.1.0
-      with:
-        fetch-depth: 20
-        lfs: true
-    - run: echo "It is demo file.."
+    - name: Print environment
+      run: echo "Deploying to ${{ inputs.environment }} environment"
