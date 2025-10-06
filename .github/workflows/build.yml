@@ -1,7 +1,4 @@
 name: gitlab-source-group/build
-true:
-  push: null
-  workflow_dispatch: null
 concurrency:
   group: ${{ github.ref }}
   cancel-in-progress: true
